@@ -11,12 +11,14 @@ import android.widget.SimpleAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     String[] fruits = {"蘋果", "鳳梨", "芭樂", "香蕉"};
     String[] cities = {"台北", "台中", "台南", "高雄"};
     String[] codes = {"02", "04", "06", "07"};
-    ArrayList<Map<String, String>> mylist;
+    int[] icons = {R.drawable.tpe, R.drawable.tc, R.drawable.tn, R.drawable.ks};
+    ArrayList<Map<String, Object>> mylist;
 
     ListView lv;
     @Override
@@ -35,13 +37,14 @@ public class MainActivity extends AppCompatActivity {
             Map m = new HashMap();
             m.put("city", cities[i]);
             m.put("code", codes[i]);
+            m.put("img",icons[i]);
             mylist.add(m);
         }
 
         SimpleAdapter adapter = new SimpleAdapter(MainActivity.this,
                 mylist, R.layout.myitem,
-                new String[] {"city", "code"},
-                new int[] {R.id.textView, R.id.textView2});
+                new String[] {"city", "code","img"},
+                new int[] {R.id.textView, R.id.textView2, R.id.imageView});
 
         lv.setAdapter(adapter);
     }
